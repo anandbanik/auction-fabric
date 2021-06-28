@@ -236,7 +236,7 @@ function createOrgs() {
         echo "fabric-ca-client binary is not available to download"
     else
         echo "==> Done."
-      cd test-network
+      cd auction-network
     fi
     fi
 

@@ -22,7 +22,7 @@
 
 ### Running the Fabric 2.0 Art-NFT network
 
-1. Go to the test-network directory.
+1. Go to the auction-network directory.
 
 2. Use the network.sh script to run the test network using the below options.
 

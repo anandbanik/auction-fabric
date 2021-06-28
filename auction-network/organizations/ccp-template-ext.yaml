@@ -1,5 +1,5 @@
 ---
-name: test-network-${ORG}
+name: auction-network-${ORG}
 version: 1.0.0
 client:
   organization: ${ORG}
@@ -16,7 +16,7 @@ organizations:
     - ca.${ORG_URL}.art-nft.com
 peers:
   peer0.${ORG_URL}.art-nft.com:
-    url: grpcs://localhost:${P0PORT}
+    url: grpcs://peer0.${ORG_URL}.art-nft.com:${P0PORT}
     tlsCACerts:
       pem: |
         ${PEERPEM}
@@ -25,7 +25,7 @@ peers:
       hostnameOverride: peer0.${ORG_URL}.art-nft.com
 certificateAuthorities:
   ca.${ORG_URL}.art-nft.com:
-    url: https://localhost:${CAPORT}
+    url: https://ca-${ORG_URL}:${CAPORT}
     caName: ca-${ORG_URL}
     tlsCACerts:
       pem: |
