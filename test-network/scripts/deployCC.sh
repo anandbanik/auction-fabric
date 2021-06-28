@@ -317,12 +317,12 @@ chaincodeQuery() {
 packageChaincode "AuctionHouse"
 
 ## Install chaincode on peer0.org1 and peer0.org2
-if [ "$CHANNEL_NAME" == "supplierpayment" ]; then
+if [ "$CHANNEL_NAME" == "authentication" ]; then
   echo "Installing chaincode on AuctionHouse Peers..."
   installChaincode "AuctionHouse"
   echo "Install chaincode on Authenticator Peers..."
   installChaincode "Authenticator"
-elif [ "$CHANNEL_NAME" == "carrierpayment" ]; then
+elif [ "$CHANNEL_NAME" == "appraisal" ]; then
   echo "Installing chaincode on AuctionHouse Peers..."
   installChaincode "AuctionHouse"
   echo "Install chaincode on Appraiser Peers..."
@@ -338,12 +338,12 @@ fi
 ## query whether the chaincode is installed
 queryInstalled "AuctionHouse"
 
-if [ "$CHANNEL_NAME" == "supplierpayment" ]; then
+if [ "$CHANNEL_NAME" == "authentication" ]; then
   ## approve the definition for AuctionHouse
   approveForMyOrg "AuctionHouse"
   ## now approve also for Authenticator
   approveForMyOrg "Authenticator"  
-elif [ "$CHANNEL_NAME" == "carrierpayment" ]; then
+elif [ "$CHANNEL_NAME" == "appraisal" ]; then
   ## approve the definition for AuctionHouse
   approveForMyOrg "AuctionHouse"
   ## now approve also for Appraiser
@@ -359,9 +359,9 @@ fi
 
 
 ## now that we know for sure both orgs have approved, commit the definition
-if [ "$CHANNEL_NAME" == "supplierpayment" ]; then
+if [ "$CHANNEL_NAME" == "authentication" ]; then
   commitChaincodeDefinition "AuctionHouse" "Authenticator"
-elif [ "$CHANNEL_NAME" == "carrierpayment" ]; then
+elif [ "$CHANNEL_NAME" == "appraisal" ]; then
   commitChaincodeDefinition "AuctionHouse" "Appraiser"
 else
   commitChaincodeDefinition "AuctionHouse" "Authenticator" "Appraiser"
@@ -369,10 +369,10 @@ fi
 
 
 ## query on both orgs to see that the definition committed successfully
-if [ "$CHANNEL_NAME" == "supplierpayment" ]; then
+if [ "$CHANNEL_NAME" == "authentication" ]; then
   queryCommitted "AuctionHouse"
   queryCommitted "Authenticator"
-elif [ "$CHANNEL_NAME" == "carrierpayment" ]; then
+elif [ "$CHANNEL_NAME" == "appraisal" ]; then
   queryCommitted "AuctionHouse"
   queryCommitted "Appraiser"
 else
@@ -381,9 +381,9 @@ else
   queryCommitted "Appraiser"
 fi
 ## Invoke the chaincode
-if [ "$CHANNEL_NAME" == "supplierpayment" ]; then
+if [ "$CHANNEL_NAME" == "authentication" ]; then
   chaincodeInvokeInit "AuctionHouse" "Authenticator"
-elif [ "$CHANNEL_NAME" == "carrierpayment" ]; then
+elif [ "$CHANNEL_NAME" == "appraisal" ]; then
   chaincodeInvokeInit "AuctionHouse" "Appraiser"
 else 
   chaincodeInvokeInit "AuctionHouse" "Authenticator" "Appraiser"
@@ -392,9 +392,9 @@ fi
 sleep 10
 
 ## Invoke the chaincode
-if [ "$CHANNEL_NAME" == "supplierpayment" ]; then
+if [ "$CHANNEL_NAME" == "authentication" ]; then
   chaincodeInvoke "AuctionHouse" "Authenticator"
-elif [ "$CHANNEL_NAME" == "carrierpayment" ]; then
+elif [ "$CHANNEL_NAME" == "appraisal" ]; then
   chaincodeInvoke "AuctionHouse" "Appraiser"
 else
   chaincodeInvoke "AuctionHouse" "Authenticator" "Appraiser"
