@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Techbytes environment Setup
+# Art NFT environment Setup
 
 
 # This script brings up a Hyperledger Fabric network for testing smart contracts
@@ -341,7 +341,7 @@ function startMetricServer() {
     networkUp
   fi
 
-  CRYPTO_FOLDER="${PWD}/organizations/peerOrganizations/auctionhouse.techbytes.com/users/Admin@auctionhouse.techbytes.com/msp"
+  CRYPTO_FOLDER="${PWD}/organizations/peerOrganizations/auctionhouse.art-nft.com/users/Admin@auctionhouse.art-nft.com/msp"
 
   if [ ! -f "${CRYPTO_FOLDER}/keystore/priv_sk" ]; then
     cp $(find ${CRYPTO_FOLDER}/keystore/ -maxdepth 1 -type f -iname '*_sk') ${CRYPTO_FOLDER}/keystore/priv_sk
@@ -363,6 +363,12 @@ function generateCerts() {
 
 }
 
+function startKafkaBrokers() {
+  docker-compose -f ${COMPOSE_FILE_KAFKA} up -d 2>&1
+  sleep 10
+  docker exec kafka1.art-nft.com /bin/sh "/home/createTopic.sh"
+}
+
 function startApiServer() {
   ## Bring up the network if it is not arleady up.
 
@@ -380,12 +386,8 @@ function startApiServer() {
     node registerUser.js
   fi
   cd ../
-  docker-compose -f ${COMPOSE_FILE_KAFKA} up -d 2>&1
-  sleep 10
-  docker exec kafka1.techbytes.com /bin/sh "/home/createTopic.sh"
   sleep 10
   docker-compose -f ${COMPOSE_FILE_API} up -d 2>&1
-
 }
 
 # After we create the org crypto material and the system channel genesis block,
@@ -418,8 +420,8 @@ function networkUp() {
     exit 1
   fi
 }
-# This is an customized network creation function for techbytes.
-function networkUpTechbytes() {
+# This is an customized network creation function for Art NFT.
+function networkUpArtNft() {
 
   checkPrereqs
   # generate artifacts if they don't exist
@@ -652,7 +654,7 @@ if [ "$MODE" == "up" ]; then
   echo "Starting nodes with CLI timeout of '${MAX_RETRY}' tries and CLI delay of '${CLI_DELAY}' seconds and using database '${DATABASE}' ${CRYPTO_MODE}"
   echo
 elif [ "$MODE" == "createChannel" ]; then
-  echo "Provisioning Channels for Techbytes."
+  echo "Provisioning Channels for Art NFT."
   echo
 elif [ "$MODE" == "down" ]; then
   echo "Stopping network"
@@ -672,6 +674,9 @@ elif [ "${MODE}" == "api" ]; then
 elif [ "${MODE}" == "metrics" ]; then
   echo "Provisioning Metric service"
   echo 
+elif [ "${MODE}" == "kafka" ]; then
+  echo "Provisioning Kafka brokers and topics"
+  echo 
 else
   printHelp
   exit 1
@@ -679,7 +684,7 @@ fi
 
 if [ "${MODE}" == "up" ]; then
   #networkUp
-  networkUpTechbytes
+  networkUpArtNft
 elif [ "${MODE}" == "createChannel" ]; then
   createChannel
 elif [ "${MODE}" == "deployCC" ]; then
@@ -695,6 +700,8 @@ elif [ "${MODE}" == "api" ]; then
   startApiServer
 elif [ "${MODE}" == "metrics" ]; then
   startMetricServer
+elif [ "${MODE}" == "kafka" ]; then
+  startKafkaBrokers
 else
   printHelp
   exit 1

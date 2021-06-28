@@ -10,13 +10,13 @@ services:
     environment:
       - spring_profiles_active=container
       - fabric_localhostReportAddress=false
-      - fabric_orgConnectionConfig_filename=connection-retailer.yaml
+      - fabric_orgConnectionConfig_filename=connection-auctionhouse.yaml
       - fabric_wallet_clientUser_name=clientUser
     ports:
       - 8081:8080
     volumes:
       - ../config/rest-client/application.yml:/usr/local/config/application.yml
       - ../credentials/wallet:/usr/local/config/wallet
-      - ../organizations/peerOrganizations/retailer.techbytes.com/connection-retailer-ext.yaml:/usr/local/config/connection-retailer.yaml
+      - ../organizations/peerOrganizations/auctionhouse.art-nft.com/connection-auctionhouse-ext.yaml:/usr/local/config/connection-auctionhouse.yaml
     networks:
       - test

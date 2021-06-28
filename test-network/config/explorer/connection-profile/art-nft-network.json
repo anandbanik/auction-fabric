@@ -1,14 +1,14 @@
 {
-    "name": "techbytes-network",
+    "name": "art-nft-network",
     "version": "1.0.0",
     "client": {
         "tlsEnable": true,
         "adminCredential": {
-            "id": "techbytesadmin",
-            "password": "techbytesadminpw"
+            "id": "artnftadmin",
+            "password": "artnftadminpw"
         },
         "enableAuthentication": true,
-        "organization": "RetailerMSP",
+        "organization": "AuctionHouseMSP",
         "connection": {
             "timeout": {
                 "peer": {
@@ -19,9 +19,37 @@
         }
     },
     "channels": {
-        "supplychain": {
+        "seller": {
             "peers": {
-                "peer0.retailer.techbytes.com": {}
+                "peer0.auctionhouse.art-nft.com": {}
+            },
+            "connection": {
+                "timeout": {
+                    "peer": {
+                        "endorser": "6000",
+                        "eventHub": "6000",
+                        "eventReg": "6000"
+                    }
+                }
+            }
+        },
+        "authentication": {
+            "peers": {
+                "peer0.auctionhouse.art-nft.com": {}
+            },
+            "connection": {
+                "timeout": {
+                    "peer": {
+                        "endorser": "6000",
+                        "eventHub": "6000",
+                        "eventReg": "6000"
+                    }
+                }
+            }
+        },
+        "appraisal": {
+            "peers": {
+                "peer0.auctionhouse.art-nft.com": {}
             },
             "connection": {
                 "timeout": {
@@ -35,25 +63,25 @@
         }
     },
     "organizations": {
-        "RetailerMSP": {
-            "mspid": "RetailerMSP",
+        "AuctionHouseMSP": {
+            "mspid": "AuctionHouseMSP",
             "adminPrivateKey": {
-                "path": "/tmp/crypto/peerOrganizations/retailer.techbytes.com/users/Admin@retailer.techbytes.com/msp/keystore/priv_sk"
+                "path": "/tmp/crypto/peerOrganizations/auctionhouse.art-nft.com/users/Admin@auctionhouse.art-nft.com/msp/keystore/priv_sk"
             },
             "peers": [
-                "peer0.retailer.techbytes.com"
+                "peer0.auctionhouse.art-nft.com"
             ],
             "signedCert": {
-                "path": "/tmp/crypto/peerOrganizations/retailer.techbytes.com/users/Admin@retailer.techbytes.com/msp/signcerts/cert.pem"
+                "path": "/tmp/crypto/peerOrganizations/auctionhouse.art-nft.com/users/Admin@auctionhouse.art-nft.com/msp/signcerts/cert.pem"
             }
         }
     },
     "peers": {
-        "peer0.retailer.techbytes.com": {
+        "peer0.auctionhouse.art-nft.com": {
             "tlsCACerts": {
-                "path": "/tmp/crypto/peerOrganizations/retailer.techbytes.com/peers/peer0.retailer.techbytes.com/tls/ca.crt"
+                "path": "/tmp/crypto/peerOrganizations/auctionhouse.art-nft.com/peers/peer0.auctionhouse.art-nft.com/tls/ca.crt"
             },
-            "url": "grpcs://peer0.retailer.techbytes.com:7051"
+            "url": "grpcs://peer0.auctionhouse.art-nft.com:7051"
         }
     }
 }
