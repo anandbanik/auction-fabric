@@ -42,4 +42,3 @@ log.txt
 /credentials/wallet/*.id
 /credentials/node_modules
 /credentials/package-l*
-/config/application.yaml

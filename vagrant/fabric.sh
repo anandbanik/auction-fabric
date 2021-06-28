@@ -22,8 +22,8 @@ printHelp() {
     echo "-s : bypass fabric-samples repo clone"
     echo "-b : bypass download of platform-specific binaries"
     echo
-    echo "e.g. bootstrap.sh 2.0.0 1.4.6 0.4.18 -s"
-    echo "would download docker images and binaries for Fabric v2.0.0 and Fabric CA v1.4.6"
+    echo "e.g. bootstrap.sh 2.2.0 1.4.6 0.4.18 -s"
+    echo "would download docker images and binaries for Fabric v2.2.0 and Fabric CA v1.4.6"
 }
 
 # dockerPull() pulls docker images from fabric and chaincode repositories
@@ -117,7 +117,7 @@ pullDockerImages() {
 }
 
 DOCKER=true
-BINARIES=true
+BINARIES=false
 
 # Parse commandline args pull out
 # version and/or ca-version strings first

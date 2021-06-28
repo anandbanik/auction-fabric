@@ -1,10 +1,16 @@
-# Getting started with Hyperledger Fabric 2.0 
+# Getting started with Hyperledger Fabric 2.2 LTS
 
 ### Pre-requsite for the tutorial
 
 1. Install Docker
 2. Install Docker Compose
-3. Disconnect from VPN, if possible
+3. JDK 11
+4. NodeJs 16
+5. Maven 3.X
+6. Make
+7. GCC
+8. Git
+
 
 ### Install Binaries and Download Docker images.
 
@@ -14,7 +20,7 @@
 ./install-fabric.sh
 ```
 
-### Running the Fabric 2.0 Test network
+### Running the Fabric 2.0 Art-NFT network
 
 1. Go to the test-network directory.
 
@@ -31,6 +37,7 @@ Usage:
       - 'api' - creates the client credentials and starts the api server.
       - 'restart' - restart the network
       - 'metrics' - starts hyperledger explorer service at port-8080.
+      - 'kafka' - start kafka broker and create 2 kafka topics for integration.
 
     Flags:
     -c <channel name> - channel name to use
@@ -42,7 +49,8 @@ Usage:
  Possible Mode and flags
   network.sh up
   network.sh createChannel
-  network.sh deployCC -c supplychain -cc fabcar
+  network.sh deployCC -c seller -cc fabcar
+  network.sh kafka
   network.sh api
   network.sh metrics
   network.sh down

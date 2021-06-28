@@ -1,0 +1,84 @@
+spring:
+  profiles.active: container
+springdoc:
+  version: 1.0.0
+  swagger-ui:
+    url: /hlf-rest-client/open-api.yml
+  api-docs:
+    enabled: false
+  
+---
+spring:
+  profiles: container
+  devtools.add-properties: false
+fabric:
+  localhostReportAddress: true
+  wallet:
+    path: /usr/local/config/wallet
+    adminUser:
+      name: admin
+    clientUser:
+      name: clientUser
+  orgConnectionConfig:
+    path: /usr/local/config
+    filename: connection-auctionhouse.yaml
+  events:
+    enable: true
+    chaincode: seller
+  client:
+    rest:
+      apikey: QVvDBO9rizgQ47dsuBKwdm1qmtIbwGSQejIshM4KTk
+Kafka:
+  integration:
+    brokerHost: kafka1.art-nft.com:19092
+    groupId: fabric-consumer
+    topic: hlf-integrate
+  eventListener:
+    brokerHost: kafka1.art-nft.com:19092
+    topic: hlf-event
+---
+spring:
+  profiles: stage
+  devtools.add-properties: false
+fabric:
+  localhostReportAddress: true
+  wallet:
+    path: /usr/local/config/wallet
+    adminUser:
+      name: admin
+    clientUser:
+      name: clientUser
+  orgConnectionConfig:
+    path: /usr/local/config
+    filename: connection-auctionhouse.yaml
+  events:
+    enable: true
+    chaincode: seller
+  client:
+    rest:
+      apikey: QVvDBO9rizgQ47dsuBKwdm1qmtIbwGSQejIshM4KTk
+
+---
+spring:
+  profiles: prod  
+  devtools.add-properties: false
+fabric:
+  localhostReportAddress: true
+  wallet:
+    path: /usr/local/config/wallet
+    adminUser:
+      name: admin
+    clientUser:
+      name: clientUser
+  orgConnectionConfig:
+    path: /usr/local/config
+    filename: connection-auctionhouse.yaml
+  events:
+    enable: true
+    chaincode: seller
+  client:
+    rest:
+      apikey: QVvDBO9rizgQ47dsuBKwdm1qmtIbwGSQejIshM4KTk
+
+
+  
