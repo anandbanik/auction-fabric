@@ -1,0 +1,2 @@
+kafka-topics --create --zookeeper zoo1.techbytes.com:2181 --replication-factor 1 --partitions 1 --topic hlf-integrate
+kafka-topics --create --zookeeper zoo1.techbytes.com:2181 --replication-factor 1 --partitions 1 --topic hlf-event

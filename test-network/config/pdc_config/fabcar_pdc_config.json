@@ -1,0 +1,14 @@
+[
+    {
+    "name": "fabcarCollection",
+    "policy": "OR('RetailerMSP.member', 'SupplierMSP.member')",
+    "requiredPeerCount": 1,
+    "maxPeerCount": 1,
+    "blockToLive":1000000,
+    "memberOnlyRead": true,
+    "memberOnlyWrite": true,
+    "endorsementPolicy": {
+        "signaturePolicy": "OR('RetailerMSP.member', 'SupplierMSP.member')"
+        }
+    }
+ ]

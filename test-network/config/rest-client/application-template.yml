@@ -1,0 +1,67 @@
+spring:
+  profiles.active: local
+  
+---
+spring:
+  profiles: local
+fabric:
+  localhostReportAddress: true
+  wallet:
+    path: wallet
+    adminUser:
+      name: admin
+    clientUser:
+      name: clientUser
+  orgConnectionConfig:
+    path: config
+    filename: connection-local.yaml
+  channels: supplychain
+Kafka:
+  integration:
+    brokerHost: <kafka broker>:9093
+    groupId: <consumer-id>
+    topic: <topic name>
+    jaasConfig: org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="Endpoint=sb://<kafka broker>/;SharedAccessKeyName=fabric;SharedAccessKey=<access-key>";
+  eventListener:
+    brokerHost: <kafka broker>:9093
+    topic: <topic-name>
+    jaasConfig: org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="Endpoint=sb://<kafka broker>/;SharedAccessKeyName=fabric;SharedAccessKey=<access-key>";
+---
+spring:
+  profiles: container
+  devtools.add-properties: false
+fabric:
+  localhostReportAddress: true
+  wallet:
+    path: /usr/local/config/wallet
+    adminUser:
+      name: admin
+    clientUser:
+      name: clientUser
+  orgConnectionConfig:
+    path: /usr/local/config
+    filename: connection-walmart.yaml
+  channels: supplychain
+Kafka:
+  integration:
+    brokerHost: <kafka broker>:9093
+    groupId: <consumer-id>
+    topic: <topic name>
+    jaasConfig: org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="Endpoint=sb://<kafka broker>/;SharedAccessKeyName=fabric;SharedAccessKey=<access-key>";
+  eventListener:
+    brokerHost: <kafka broker>:9093
+    topic: <topic-name>
+    jaasConfig: org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="Endpoint=sb://<kafka broker>/;SharedAccessKeyName=fabric;SharedAccessKey=<access-key>";
+---
+spring:
+  profiles: stg
+  devtools.add-properties: false
+  localhostReportAddress: false
+  
+  
+---
+spring:
+  profiles: prod  
+  devtools.add-properties: false
+  localhostReportAddress: false
+  

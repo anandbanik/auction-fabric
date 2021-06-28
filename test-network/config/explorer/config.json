@@ -1,0 +1,10 @@
+
+{
+	"network-configs": {
+		"concorde-network": {
+			"name": "art-nft-network",
+			"profile": "./connection-profile/art-nft-network.json"
+		}
+	},
+	"license": "Apache-2.0"
+}

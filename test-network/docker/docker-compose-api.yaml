@@ -1,0 +1,22 @@
+version: '2.1'
+
+networks:
+  test:
+
+services:
+  hlf-fabric-client:
+    container_name: hlf-fabric-client
+    image: anandbanik/hlf-rest-client:1.2.2
+    environment:
+      - spring_profiles_active=container
+      - fabric_localhostReportAddress=false
+      - fabric_orgConnectionConfig_filename=connection-retailer.yaml
+      - fabric_wallet_clientUser_name=clientUser
+    ports:
+      - 8081:8080
+    volumes:
+      - ../config/rest-client/application.yml:/usr/local/config/application.yml
+      - ../credentials/wallet:/usr/local/config/wallet
+      - ../organizations/peerOrganizations/retailer.techbytes.com/connection-retailer-ext.yaml:/usr/local/config/connection-retailer.yaml
+    networks:
+      - test

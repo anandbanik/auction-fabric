@@ -1,0 +1,59 @@
+{
+    "name": "techbytes-network",
+    "version": "1.0.0",
+    "client": {
+        "tlsEnable": true,
+        "adminCredential": {
+            "id": "techbytesadmin",
+            "password": "techbytesadminpw"
+        },
+        "enableAuthentication": true,
+        "organization": "RetailerMSP",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "channels": {
+        "supplychain": {
+            "peers": {
+                "peer0.retailer.techbytes.com": {}
+            },
+            "connection": {
+                "timeout": {
+                    "peer": {
+                        "endorser": "6000",
+                        "eventHub": "6000",
+                        "eventReg": "6000"
+                    }
+                }
+            }
+        }
+    },
+    "organizations": {
+        "RetailerMSP": {
+            "mspid": "RetailerMSP",
+            "adminPrivateKey": {
+                "path": "/tmp/crypto/peerOrganizations/retailer.techbytes.com/users/Admin@retailer.techbytes.com/msp/keystore/priv_sk"
+            },
+            "peers": [
+                "peer0.retailer.techbytes.com"
+            ],
+            "signedCert": {
+                "path": "/tmp/crypto/peerOrganizations/retailer.techbytes.com/users/Admin@retailer.techbytes.com/msp/signcerts/cert.pem"
+            }
+        }
+    },
+    "peers": {
+        "peer0.retailer.techbytes.com": {
+            "tlsCACerts": {
+                "path": "/tmp/crypto/peerOrganizations/retailer.techbytes.com/peers/peer0.retailer.techbytes.com/tls/ca.crt"
+            },
+            "url": "grpcs://peer0.retailer.techbytes.com:7051"
+        }
+    }
+}
