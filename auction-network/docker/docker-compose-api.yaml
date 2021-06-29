@@ -4,8 +4,8 @@ networks:
   test:
 
 services:
-  hlf-fabric-client:
-    container_name: hlf-fabric-client
+  hlf-fabric-client.auctionhouse.art-nft.com:
+    container_name: hlf-fabric-client.auctionhouse.art-nft.com
     image: anandbanik/hlf-rest-client:1.2.2
     environment:
       - spring_profiles_active=container
