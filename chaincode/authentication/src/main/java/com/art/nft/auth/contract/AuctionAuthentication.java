@@ -28,6 +28,15 @@ public class AuctionAuthentication implements ContractInterface {
 	private static final Logger LOGGER = Logger.getLogger(AuctionAuthentication.class);
 	private final Genson genson = new Genson();
 
+
+	/**
+	 * The Function to initialize the ledger
+	 *
+	 * @param ctx			Context Chaincode context
+	 * @return null
+	 */
+
+
 	@Transaction()
 	public void initLedger(final Context context) {
 		LOGGER.info("Initializing ledger for POTraceEventSmartContract");
@@ -55,6 +64,14 @@ public class AuctionAuthentication implements ContractInterface {
 	public String health(final Context ctx) {
 		return "status - ok";
 	}
+
+	/**
+	 * The Function to create the Art Asset
+	 *
+	 * @param ctx			Context Chaincode context
+	 * @param authPayload   String Payload to create the asset
+	 * @return response		Response<String> Response object with the created asset Payload
+	 */
 
 	@Transaction()
 	public Response<String> createArtAsset(final Context ctx, final String assetPayload) {
@@ -89,6 +106,14 @@ public class AuctionAuthentication implements ContractInterface {
 
 		return response;
 	}
+
+	/**
+	 * The Function to authenticate the Art Asset
+	 *
+	 * @param ctx			Context Chaincode context
+	 * @param authPayload   String Payload to authenticate the asset
+	 * @return response		Response<String> Response object with the updated asset Payload
+	 */
 
 	@Transaction()
 	public Response<String> authenticateAsset(final Context ctx, final String authPayload) {
@@ -135,6 +160,14 @@ public class AuctionAuthentication implements ContractInterface {
 		return response;
 	}
 
+	/**
+	 * The Function to get the content the Art Asset
+	 *
+	 * @param ctx			Context Chaincode context
+	 * @param key   		String key for the asset
+	 * @return response		Response<String> Response object with the asset Payload
+	 */
+
 	@Transaction()
 	public Response<String> queryAssetById(final Context ctx, final String key) {
 		Response<String> response = new Response<>();
@@ -156,6 +189,14 @@ public class AuctionAuthentication implements ContractInterface {
 		}
 		return response;
 	}
+
+	/**
+	 * The Function to get the entire histroy of the Art Asset
+	 *
+	 * @param ctx			Context Chaincode context
+	 * @param key   		String key for the asset
+	 * @return response		AssetHistory[] Array of Asset Object to shpw the audit history
+	 */
 
 	@Transaction()
 	public AssetHistory[] queryAssetHistroy(final Context ctx, final String key) {
