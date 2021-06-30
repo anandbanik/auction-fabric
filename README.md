@@ -33,11 +33,13 @@ Usage:
       - 'up' - bring up fabric orderer and peer nodes for 3 orgs (Walmart, Supplier and Carrier) with CouchDB. No channel is created.
       - 'createChannel' - create and join a channel after the network is created. 3 channels are created - supplychain, carrierpayment & supplierpayment
       - 'deployCC' - deploy the chaincode on the channel
-      - 'down' - clear the network with docker-compose down
-      - 'api' - creates the client credentials and starts the api server.
-      - 'restart' - restart the network
-      - 'metrics' - starts hyperledger explorer service at port-8080.
       - 'kafka' - start kafka broker and create 2 kafka topics for integration.
+      - 'api' - creates the client credentials and starts the api server.
+      - 'metrics' - starts hyperledger explorer service at port-8080.
+      - 'down' - clear the network with docker-compose down
+      - 'restart' - restart the network
+      
+      
 
     Flags:
     -c <channel name> - channel name to use
@@ -49,7 +51,7 @@ Usage:
  Possible Mode and flags
   network.sh up
   network.sh createChannel
-  network.sh deployCC -c seller -cc fabcar
+  network.sh deployCC -c seller -cc authentication
   network.sh kafka
   network.sh api
   network.sh metrics
